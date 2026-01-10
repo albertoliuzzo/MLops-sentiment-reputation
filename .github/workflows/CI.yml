@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"] #triggera il workflow su push al branch main
+  pull_request:
+    branches: ["main"] #triggera il workflow su pull request verso il branch main
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest # usa l'ultima versione di Ubuntu come ambiente di esecuzione
+
+    steps: # definisce i passaggi del job
+      - name: Checkout repository # checkout del codice sorgente della repository per eseguire i test
+        uses: actions/checkout@v4
+
+      - name: Set up Python # configura l'ambiente Python con la versione 3.11 e abilita la cache per pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies # installa le dipendenze elencate in requirements.txt 
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests # esegue i test usando pytest
+        run: |
+          pytest -q
