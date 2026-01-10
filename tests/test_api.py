@@ -23,3 +23,9 @@ def test_predict_validation_error_empty_text():
     # Qui verifichiamo che la validazione Pydantic funzioni
     r = client.post("/predict", json={"text": ""})
     assert r.status_code == 422
+
+def test_metrics_endpoint_ok():
+    r = client.get("/metrics")
+    assert r.status_code == 200
+    # controllo super semplice: ci aspettiamo che compaia almeno una metrica definita
+    assert "http_requests_total" in r.text
