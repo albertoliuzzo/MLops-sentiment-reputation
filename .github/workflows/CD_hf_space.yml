@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
 
       - name: Push to Hugging Face Space # pusha il contenuto del branch main alla repository dello Space su Hugging Face
-        env:
+        env: 
           HF_TOKEN: ${{ secrets.HF_TOKEN }} # token di accesso ad Hugging Face salvato nei segreti della repository GitHub
         run: |
             # configura il nome utente e l'email utente Git per il commit al repository dello Space su Hugging Face. Quando il workflow crea commit/pusha cambiamenti, nome e email saranno mostrati come nome e indiri dell'autore del commit
