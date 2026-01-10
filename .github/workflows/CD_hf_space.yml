@@ -1,0 +1,29 @@
+name: CD - Deploy to Hugging Face Space
+
+on:
+  push:
+    branches: ["main"] # triggera il workflow su push al branch main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository 
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Hugging Face Space # pusha il contenuto del branch main alla repository dello Space su Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }} # token di accesso ad Hugging Face salvato nei segreti della repository GitHub
+        run: |
+            # configura il nome utente e l'email utente Git per il commit al repository dello Space su Hugging Face. Quando il workflow crea commit/pusha cambiamenti, nome e email saranno mostrati come nome e indiri dell'autore del commit
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"   
+
+            # aggiunge la remote di Hugging Face usando il token per l'autenticazione
+            git remote add hf https://AlbertoLiuzzo:${HF_TOKEN}@huggingface.co/spaces/AlbertoLiuzzo/mlops-sentiment-reputation
+
+            # pusha il branch main locale (i commit presenti in main) alla remote hf (Hugging Face Space), forzando l'aggiornamento solo se non ci sono cambiamenti remoti imprevisti
+            git push --force-with-lease hf main 
