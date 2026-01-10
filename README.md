@@ -26,7 +26,7 @@ Include: model serving con FastAPI, test automatici (CI), deploy (CD) su Hugging
 ## Link utili
 
 - Repo GitHub: **https://github.com/albertoliuzzo/MLops-sentiment-reputation**
-- Hugging Face Space (live): **https://huggingface.co/spaces/AlbertoLiuzzo/mlops-sentiment-reputation**  
+- Hugging Face Space (live): **https://AlbertoLiuzzo-mlops-sentiment-reputation.hf.space**  
 
 ---
 
