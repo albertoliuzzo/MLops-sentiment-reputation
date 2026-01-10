@@ -6,13 +6,38 @@ sdk: docker
 app_port: 7860
 ---
 
-# Sentiment Reputation Monitoring (MLOps Template)
+# Sentiment reputation monitoring 
 
-Progetto MLOps end-to-end per analisi del sentiment e monitoraggio reputazione online.
+Progetto MLOps per monitoraggio reputazione online tramite analisi del sentiment.
+Include: model serving con FastAPI, test automatici (CI), deploy (CD) su Hugging Face Space, e monitoraggio (metriche + log) con un controllo semplice di data drift.
 
-## Struttura
-- `app/`: API FastAPI + inferenza modello
-- `tests/`: test automatici per CI (pytest)
-- `monitoring/`: conterrà config per Prometheus/Grafana
-- `scripts/`: utility (drift baseline, batch inference, ecc.)
-- `airflow/`: conterrà DAG per retraining/orchestrazione
+## Architettura (high level)
+
+- **Model**: `cardiffnlp/twitter-roberta-base-sentiment-latest` (Hugging Face Transformers)
+- **Serving**: FastAPI (`/predict`, `/health`, `/docs`)
+- **Container**: Docker 
+- **CI**: GitHub Actions + pytest
+- **CD**: GitHub Actions → push su Hugging Face Space
+- **Monitoring**: `/metrics` + log predizioni `predictions.jsonl`
+- **Data drift**: baseline + script `drift_check_simple.py`
+
+---
+
+## Link utili
+
+- Repo GitHub: **https://github.com/albertoliuzzo/MLops-sentiment-reputation**
+- Hugging Face Space (live): **https://huggingface.co/spaces/AlbertoLiuzzo/mlops-sentiment-reputation**  
+
+---
+
+## Struttura repository
+
+- `app/` → API FastAPI + inferenza modello
+- `tests/` → test automatici (pytest) usati in CI
+- `.github/workflows/` → pipeline CI e CD
+- `monitoring/` → baseline e drift check (versione semplice)
+- `Dockerfile` → build container per Hugging Face Space
+- `requirements.txt` → dipendenze Python
+
+---
+
