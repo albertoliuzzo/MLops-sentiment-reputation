@@ -1,0 +1,8 @@
+{
+  "label_dist": {
+    "positive": 0.33,
+    "neutral": 0.34,
+    "negative": 0.33
+  },
+  "avg_text_len": 80
+}
