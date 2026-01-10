@@ -1,6 +1,5 @@
 ---
 title: mlops-sentiment-reputation
-emoji: "💬"
 colorFrom: blue
 colorTo: purple
 sdk: docker

@@ -67,6 +67,17 @@ class PredictResponse(BaseModel):
 def health(): # endpoint di health check: se risponde, il server è su
     return {"status": "ok"}
 
+@app.get("/") #evita il {"detail": "Not Found"} quando apri lo Space. Chiunque apre il link capisce subito cosa fa l’API
+def root():
+    return {
+        "message": "Sentiment Reputation Monitoring API",
+        "endpoints": {
+            "health": "/health",
+            "predict": "/predict",
+            "metrics": "/metrics",
+            "docs": "/docs"
+        }
+    }
 
 @app.get("/metrics")
 def metrics():
