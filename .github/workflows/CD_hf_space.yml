@@ -22,8 +22,14 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"   
 
+            # rimuove la remote hf se esiste già, per evitare errori
+            git remote remove hf || true 
+
             # aggiunge la remote di Hugging Face usando il token per l'autenticazione
             git remote add hf https://AlbertoLiuzzo:${HF_TOKEN}@huggingface.co/spaces/AlbertoLiuzzo/mlops-sentiment-reputation
 
-            # pusha il branch main locale (i commit presenti in main) alla remote hf (Hugging Face Space), forzando l'aggiornamento solo se non ci sono cambiamenti remoti imprevisti
-            git push --force-with-lease hf main 
+            # fetch della remote hf per assicurarsi di avere l'ultima versione del branch main dello Space
+            git fetch hf main || true
+
+            # pusha il branch main locale (i commit presenti in main) alla remote hf (Hugging Face Space), forzando l'aggiornamento
+            git push --force hf main

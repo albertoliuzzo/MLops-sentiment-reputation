@@ -1,3 +1,12 @@
+---
+title: mlops-sentiment-reputation
+emoji: "💬"
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+---
+
 # Sentiment Reputation Monitoring (MLOps Template)
 
 Progetto MLOps end-to-end per analisi del sentiment e monitoraggio reputazione online.
