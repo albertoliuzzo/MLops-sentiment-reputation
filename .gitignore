@@ -22,6 +22,11 @@ data/*.parquet
 # Logs
 *.log
 
-# Monitoring runtime logs (do not commit)
+# Monitoring runtime logs
 monitoring/predictions.jsonl
 monitoring/*.jsonl
+
+# Datasets 
+data/*.csv
+data/*.zip
+data/*.parquet

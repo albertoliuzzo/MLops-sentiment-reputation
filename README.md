@@ -41,3 +41,8 @@ Include: model serving con FastAPI, test automatici (CI), deploy (CD) su Hugging
 
 ---
 
+## Dataset pubblico (Kaggle) e inferenza batch
+
+Questo progetto usa un dataset pubblico per eseguire predizioni in batch e validare il modello.
+Dataset: Kaggle "Sentiment Analysis Dataset".
+
